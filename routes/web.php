@@ -31,3 +31,9 @@ Route::get('/update',function(){
 	$photo->path = "updated example.jpg";
 	$photo->save();
 });
+
+Route::get('/delete',function(){
+	$staff = Staff::findOrfail(1);
+	// $staff->photos()->whereName('bad_photo.jpg')->delete();
+	$staff->photos()->whereId(1)->delete();
+});
