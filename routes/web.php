@@ -37,3 +37,14 @@ Route::get('/delete',function(){
 	// $staff->photos()->whereName('bad_photo.jpg')->delete();
 	$staff->photos()->whereId(1)->delete();
 });
+Route::get('/assign',function(){
+	$staff = Staff::findOrFail(1);
+	$photo =Photo::findOrFail(1);
+	$staff->photos()->save($photo);
+});
+Route::get('/un-assign',function(){
+	$staff = Staff::findOrFail(1);
+	// $photo =Photo::findOrFail(3);
+	// dd($staff->photos()->whereId(1)->get());
+	$staff->photos()->whereId(1)->update(['imageable_id'=>'','imageable_type'=>'']);
+});
